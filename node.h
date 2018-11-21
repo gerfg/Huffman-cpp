@@ -12,11 +12,15 @@ public:
     std::string code;
 
     bool operator<(const Node& other) {
-        return other.frequency < frequency;
+        if (other.frequency != frequency){
+            return other.frequency < frequency;
+        } else {
+            return byte < other.byte;
+        }
     }
 
-    bool operator==(const Node &rhs) {
-        return rhs.frequency == frequency;
+    bool operator==(const int &rhs) {
+        return rhs == frequency;
     }
 };
 

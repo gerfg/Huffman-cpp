@@ -3,12 +3,9 @@
 Huffman::Huffman(const std::string& filePath){
 
     readFileFrequency(filePath);
-    
-    print(true);
-
     removeUnusedBytes();
+    printData();
 
-    print(true);
 }
 
 void Huffman::readFileFrequency(const std::string& filePath){
@@ -35,28 +32,13 @@ void Huffman::generateHuffmanTree(){
 }
 
     
-void Huffman::print(bool all){
-    if (all) {
-        for(size_t i=0; i<255; i++)
-            std::cout << "(" << i << ") " << (char) i << ": " << data[i].frequency << "\n";
-    } else {
-        for(size_t i=0; i<255; i++){
-            if (data[i].frequency != 0)
-                std::cout << "(" << i << ") " << (char) i << ": " << data[i].frequency << "\n";
-        }
+void Huffman::printData(){
+    for(size_t i=0; i<data.size(); i++){
+        std::cout << i << " (" << data[i].byte << ") " << (char) data[i].byte << ": " << data[i].frequency << "\n";
     }
 }
 
 void Huffman::removeUnusedBytes() {
-    int startPositionToErase;
     std::sort(data.begin(), data.end());
-    
-    for(size_t i = 0; i < 255; i++) {
-        if (data[i].frequency == 0){
-            startPositionToErase = i;
-            break;
-        }
-    }
-
-    data.erase(data.begin()+startPositionToErase);
+    data.erase( std::remove(data.begin(), data.end(), 0), data.end() );
 }
