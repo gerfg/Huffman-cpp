@@ -19,7 +19,8 @@ public:
     Huffman(const std::string& filePath);
     void readFileFrequency(const std::string& filePath);
     void generateHuffmanTree();
-    void print();
+    void print(bool all);
+    void removeUnusedBytes();
 };
 
 #endif
