@@ -23,14 +23,14 @@ public:
     inline void printData();
     void removeUnusedBytes();
 
-    friend std::ostream &operator<<(std::ostream& os, const Node& obj) {
+    // friend std::ostream &operator<<(std::ostream& os, const Node& obj) {
         
-        for(int i = 0; i < data.size(); i++) {
-            os << i << " (" << data[i].byte << ") " << (char) data[i].byte << ": " << data[i].frequency << "\n";
-        }
-        os << "\n";
-        return os;
-    }
+    //     for(int i = 0; i < data.size(); i++) {
+    //         os << i << " (" << data[i].byte << ") " << (char) data[i].byte << ": " << data[i].frequency << "\n";
+    //     }
+    //     os << "\n";
+    //     return os;
+    // }
 };
 
 #endif

@@ -32,25 +32,17 @@ void Huffman::removeUnusedBytes() {
 void Huffman::generateHuffmanTree(){
     std::vector< std::unique_ptr< Node > > dataBackup;
 
-    std::cout << "OIII\n";
-    // dataBackup = data;
-    dataBackup.emplace_back( std::move(new Node()) );
-    dataBackup[0]->frequency = 10;
-    std::cout << dataBackup[0]->frequency << "\n";
-
     for(size_t i = 0; i < data.size(); i++) {
         dataBackup.emplace_back( std::move(new Node(data[i])) );
     }
-    std::cout << "OIII\n";
-    // std::cout << "test: " << dataBackup[0]->frequency << "\n";
+    
 
-    printData();
-    printVector(dataBackup, "dataBackup: ");
-
-    // while(dataBackup.size() != 1) {
-    //     dataBackup[0] = new Node(dataBackup[0], dataBackup[1]);
-    // }
-
+    dataBackup.emplace_back( std::move(new Node(*dataBackup[0], *dataBackup[1])) );
+    dataBackup.erase( dataBackup.begin(), dataBackup.begin()+2 );
+    std::sort(dataBackup.begin(), dataBackup.end());
+    for(size_t i = 0; i < dataBackup.size(); i++) {
+        std::cout << (char) dataBackup[i]->byte << " frequency: " << dataBackup[i]->frequency << "\n";
+    }
 }
     
 void Huffman::printData(){
