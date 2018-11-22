@@ -7,6 +7,7 @@ int main(int argc, char const *argv[])
         std::cout << "Missing Instance!\n./huffman [instance path]\n"; 
     } else {
         Huffman huffman(argv[1]);
+        huffman.generateHuffmanTree();
     }
     
     return 0;

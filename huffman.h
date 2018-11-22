@@ -2,6 +2,7 @@
 #define HUFFMAN_H
 
 #include "node.h"
+#include "util.h"
 
 // #include <boost/utility/binary.hpp>
 #include <memory>
@@ -13,7 +14,7 @@
 
 class Huffman {
     std::vector<Node> data;
-    Node* rootHuffmanTree;
+    std::unique_ptr<Node> rootHuffmanTree;
 
 public:
     Huffman(const std::string& filePath);
@@ -21,6 +22,15 @@ public:
     void generateHuffmanTree();
     inline void printData();
     void removeUnusedBytes();
+
+    friend std::ostream &operator<<(std::ostream& os, const Node& obj) {
+        
+        for(int i = 0; i < data.size(); i++) {
+            os << i << " (" << data[i].byte << ") " << (char) data[i].byte << ": " << data[i].frequency << "\n";
+        }
+        os << "\n";
+        return os;
+    }
 };
 
 #endif
