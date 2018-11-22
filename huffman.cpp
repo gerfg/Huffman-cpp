@@ -36,13 +36,17 @@ void Huffman::generateHuffmanTree(){
         dataBackup.emplace_back( std::move(new Node(data[i])) );
     }
     
-
-    dataBackup.emplace_back( std::move(new Node(*dataBackup[0], *dataBackup[1])) );
-    dataBackup.erase( dataBackup.begin(), dataBackup.begin()+2 );
-    std::sort(dataBackup.begin(), dataBackup.end());
-    for(size_t i = 0; i < dataBackup.size(); i++) {
-        std::cout << (char) dataBackup[i]->byte << " frequency: " << dataBackup[i]->frequency << "\n";
+    while(dataBackup.size() > 1){
+        dataBackup.emplace_back( std::move(new Node(*dataBackup[0], *dataBackup[1])) );
+        dataBackup.erase( dataBackup.begin(), dataBackup.begin()+2 );
+        std::sort(dataBackup.begin(), dataBackup.end());
+        for(size_t i = 0; i < dataBackup.size(); i++) {
+            std::cout << (char) dataBackup[i]->byte << " frequency: " << dataBackup[i]->frequency << "\n";
+        }
+        std::cout << "\n";
     }
+    rootHuffmanTree = std::move(dataBackup[0]);
+    std::cout << rootHuffmanTree->right->frequency << "\n";
 }
     
 void Huffman::printData(){

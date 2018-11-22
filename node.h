@@ -48,6 +48,12 @@ public:
         byte = -1;
     }
     
+    void showPreOrder(){
+        left->showPreOrder();
+        right->showPreOrder();
+
+        std::cout << "frequency: " << frequency << " byte: " << byte << "\n";
+    }
 };
 
 #endif
