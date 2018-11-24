@@ -16,4 +16,18 @@
 //     std::cout << "\n";
 // }
 
+// template<typename T>
+// void showPreOrder(T &nd){
+//     if (nd == nullptr)
+//         return;
+    
+//     std::cout << "frequency: " << nd->frequency << " byte: " << nd->byte << "\n";
+    
+//     showPreOrder(nd->left);
+//     showPreOrder(nd->right);
+// }
+
+bool compareNodePtr(Node* nd1, Node* nd2);
+bool compareNode(Node nd1, Node nd2);
+
 #endif
